@@ -13,13 +13,14 @@ $categories = $query->fetchAll(PDO::FETCH_OBJ);
     $min = $_POST['min'];
     $max = $_POST['max'];
     $cat = $_POST['cat'];
+    $search = $_POST['s'];
     if ($cat == '0') {
         $products = $connect->query(
-            "SELECT * FROM products WHERE price BETWEEN '$min' AND '$max'"
+            "SELECT * FROM products WHERE product_name LIKE '%$search%' AND price BETWEEN '$min' AND '$max'"
         );
     } else {
         $products = $connect->query(
-            "SELECT * FROM products WHERE category_id='$cat' AND price BETWEEN '$min' AND '$max'"
+            "SELECT * FROM products WHERE product_name LIKE '%$search%' AND category_id='$cat' AND price BETWEEN '$min' AND '$max'"
         );
     }
 
@@ -39,7 +40,7 @@ $categories = $query->fetchAll(PDO::FETCH_OBJ);
                                 } ?>
                                 <li class="product masonry-item col-md-3 col-sm-6 <?php echo trim(
                                     $categorie->category_name
-                                ); ?>">
+                                ); ?>" style="min-height:400px">
                                     <div class="product-container">
                                         <figure>
                                             <div class="product-wrap">
@@ -55,24 +56,21 @@ $categories = $query->fetchAll(PDO::FETCH_OBJ);
 																</div>
 															</div> -->
                                                     <div class="clear"></div>
-                                                    <div class="shop-loop-quickview">
-                                                        <a href="#" data-rel="quickViewModal"><i class="fa fa-plus"></i></a>
-                                                    </div>
                                                 </div>
                                             </div>
                                             <figcaption>
                                                 <div class="shop-loop-product-info">
                                                     <div class="info-title">
-                                                        <h3 class="product_title"><a href="#"><?php echo $product->product_name; ?></a></h3>
+                                                        <h3 class="product_title"><a href="./product_page.php?prod_id=<?php echo $product->product_id; ?>"><?php echo $product->product_name; ?></a></h3>
                                                     </div>
                                                     <div class="info-meta">
                                                         <div class="info-price">
                                                             <span class="price">
-                                                                <span class="amount">JD <?php echo $product->price; ?></span>
+                                                                <span class="amount"> <?php echo $product->price; ?> JOD</span>
                                                             </span>
                                                         </div>
                                                         <div class="loop-add-to-cart">
-                                                            <a href="#">Select options</a>
+                                                        <a href="add_to_cart.php?ad=<?php echo $product->product_id; ?>&from=shop">Add To Cart</a>
                                                         </div>
                                                     </div>
                                                 </div>

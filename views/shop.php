@@ -1,24 +1,19 @@
-<?php require_once 'connection.php'; ?>
-<?php require 'header.php'; ?>
 <?php
-  
-session_start();
-  
+//require_once 'connection.php';
 ?>
+<?php require 'header.php'; ?>
 
 <!-- //////////////////////////////////////////////////// -->
 
 <!-- banner -->
 <div class="heading-container heading-resize heading-button">
-    <div class="heading-background heading-parallax bg-4">
+    <div class="heading-background heading-parallax bg-4" style="background-image:url(../imgs/h2.jpg)">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
                     <div class="heading-wrap">
                         <div class="page-title">
-                            <h1>Nunc interdum</h1>
-                            <span class="subtitle">Women</span>
-                            <a class="btn btn-white-outline heading-button-btn" href="#" title="Buy Now">Buy Now</a>
+                            <h1></h1>
                         </div>
                     </div>
                 </div>
@@ -66,6 +61,18 @@ $categories = $query->fetchAll(PDO::FETCH_OBJ);
             <div class="col-md-3 sidebar-wrap">
                 <div class="main-sidebar">
                     <div class="widget shop widget_price_filter">
+                        <div style="margin-bottom:20px">
+                            <input type="text" name="search" id="searchP" placeholder="Search..." style="width: 100%;
+                                                                                                        height: 43px;
+                                                                                                        border-radius: 15px;
+                                                                                                        padding: 15px;
+                                                                                                        font-size: 20px;
+                                                                                                        border: 1px solid #0075ff;
+                                                                                                        box-shadow: inset 0px 0px 1px 1px #0075ff;">
+                        </div>
+                    <div>
+
+                    </div>
                         <h4 class="widget-title"><span>Price</span></h4>
                         <!-- <form method="post" action="shop.php">
                             <div class="price_slider_wrapper">
@@ -83,9 +90,9 @@ $categories = $query->fetchAll(PDO::FETCH_OBJ);
                         </form> -->
                         <div>
                             <input type="range" id="minPrice" name="min_price" data-min="0" value="0" placeholder="Min price" />
-                            <span id="spanMin">Min Price : 10</span>
-                            <input type="range" id="maxPrice" name="max_price" data-max="100" value="100" placeholder="Max price" /> 
-                            <span id="spanMax">Max Price : 100</span>       
+                            <span id="spanMin">Min Price : 0</span>
+                            <input type="range" id="maxPrice" name="max_price" data-max="1000" value="1000" placeholder="Max price" /> 
+                            <span id="spanMax">Max Price : 1000</span>       
                         </div>
 
                     </div>
@@ -95,7 +102,7 @@ $categories = $query->fetchAll(PDO::FETCH_OBJ);
                         <ul class="product_list_widget">
                         <?php
                         $products = $connect->query(
-                            'SELECT * FROM products LIMIT 5'
+                            'SELECT * FROM products ORDER BY RAND() LIMIT 5'
                         );
                         while (
                             $product = $products->fetch(PDO::FETCH_ASSOC)
@@ -113,7 +120,7 @@ $categories = $query->fetchAll(PDO::FETCH_OBJ);
                                 </a>
                                 <span class="amount"><?php echo $product[
                                     'price'
-                                ]; ?> JD</span>
+                                ]; ?> JOD</span>
                                 <!-- <ins><span class="amount">&#36;19.00</span></ins> -->
                             </li>
                             <?php }
@@ -123,10 +130,8 @@ $categories = $query->fetchAll(PDO::FETCH_OBJ);
 
                 </div>
             </div>
-            
-
             <div class="col-md-9 main-wrap" main-wrap class="main-content  " >
-                <div data-itemselector=".product.infinite-scroll-item" data-layout="masonry" data-paginate="infinite_scroll" data-masonry-column="4" class="shop products-masonry  infinite-scroll masonry">
+                <div data-itemselector=".product.infinite-scroll-item" data-layout="masonry" data-paginate="infinite_scroll" data-masonry-column="3" class="shop products-masonry  infinite-scroll masonry">
                     <div class="masonry-filter">
                         <div class="filter-action filter-action-center">
                             <?php if (isset($_GET['category'])) {
@@ -150,7 +155,7 @@ $categories = $query->fetchAll(PDO::FETCH_OBJ);
 ); ?>"><?php echo ucfirst($categorie->category_name); ?></a>
                                     </li>
                                     <script>
-                                        console.log(document.querySelector(".selected"));
+                                        // console.log(document.querySelector(".selected"));
                                         window.onload = function() {
                                             document.querySelector(".selected").click();
                                         }
@@ -165,12 +170,12 @@ $categories = $query->fetchAll(PDO::FETCH_OBJ);
                             <ul data-filter-key="filter">
                                 <li>
                                     <!-- <a class="selected" href="./shop.php" data-filter-value="*">All</a> -->
-                                    <a class="selected filterCat" data-filter-value="*" id='id0'>All</a>
+                                    <a class="selected filterCat" data-filter-value="*" id='id0' style="cursor:pointer">All</a>
                                 </li>
                                 <?php foreach ($categories as $categorie) { ?>
 
                                     <li>
-                                        <a class="filterCat" id="id<?php echo $categorie->category_id; ?>" data-filter-value=".<?php echo trim(
+                                        <a class="filterCat" id="id<?php echo $categorie->category_id; ?>" style="cursor:pointer" data-filter-value=".<?php echo trim(
     $categorie->category_name
 ); ?>"><?php echo ucfirst($categorie->category_name); ?></a>
                                     </li>
@@ -233,7 +238,7 @@ $categories = $query->fetchAll(PDO::FETCH_OBJ);
                                                     <div class="info-meta">
                                                         <div class="info-price">
                                                             <span class="price">
-                                                                <span class="amount">JD <?php echo $product->price; ?></span>
+                                                                <span class="amount"><?php echo $product->price; ?> JOD</span>
                                                             </span>
                                                         </div>
                                                         <div class="loop-add-to-cart">
@@ -265,24 +270,25 @@ $categories = $query->fetchAll(PDO::FETCH_OBJ);
     let curCat = (curCateg.id).slice(2);
     let leftPrice=document.getElementById("minPrice");
     let rightPrice=document.getElementById("maxPrice");
-    console.log(curCat);
+    let searchInput=document.getElementById("searchP");
+    // console.log(curCat);
 
     [...categ].forEach(element => {
         element.addEventListener('click', function(e) {
             curCat=(element.id).slice(2);
-            console.log(curCat);
-            console.log(leftPrice.value);
-            console.log(rightPrice.value);
+            // console.log(curCat);
+            // console.log(leftPrice.value);
+            // console.log(rightPrice.value);
             fetch('filterPrice.php', {
             method: 'POST', // or 'PUT'
             headers : {
                 'Content-Type': 'application/x-www-form-urlencoded', 
             },
-            body: `min=${leftPrice.value}&max=${rightPrice.value}&cat=${curCat}`,
+            body: `min=${leftPrice.value*10}&max=${rightPrice.value*10}&cat=${curCat}&s=${searchInput.value}`,
             })
             .then((response) => {
                 response.text().then(res=>{
-                    console.log(res);
+                    // console.log(res);
                     document.getElementById("wrapProducts").innerHTML = res;
                 });
             })
@@ -295,17 +301,17 @@ $categories = $query->fetchAll(PDO::FETCH_OBJ);
     
 
     leftPrice.addEventListener("input", function() {
-        console.log(curCat);
+        document.getElementById("spanMin").innerHTML=`Min Price : ${leftPrice.value*10}`;
         fetch('filterPrice.php', {
             method: 'POST', // or 'PUT'
             headers : {
                 'Content-Type': 'application/x-www-form-urlencoded', 
             },
-            body: `min=${leftPrice.value}&max=${rightPrice.value}&cat=${curCat}`,
+            body: `min=${leftPrice.value*10}&max=${rightPrice.value*10}&cat=${curCat}&s=${searchInput.value}`,
             })
             .then((response) => {
                 response.text().then(res=>{
-                    console.log(res);
+                    // console.log(res);
                     document.getElementById("wrapProducts").innerHTML = res;
                 });
             })
@@ -315,17 +321,19 @@ $categories = $query->fetchAll(PDO::FETCH_OBJ);
     }, false);
 
     rightPrice.addEventListener("input", function() {
-        console.log(curCat);
+        // let maxP=rightPrice.value*10;
+        document.getElementById("spanMax").innerHTML=`Max Price : ${rightPrice.value*10}`;
+        // console.log(rightPrice.value);
         fetch('filterPrice.php', {
             method: 'POST', // or 'PUT'
             headers : {
                 'Content-Type': 'application/x-www-form-urlencoded', 
             },
-            body: `min=${leftPrice.value}&max=${rightPrice.value}&cat=${curCat}`,
+            body: `min=${leftPrice.value*10}&max=${rightPrice.value*10}&cat=${curCat}&s=${searchInput.value}`,
             })
             .then((response) => {
                 response.text().then(res=>{
-                    console.log(res);
+                    // console.log(res);
                     document.getElementById("wrapProducts").innerHTML = res;
                 });
             })
@@ -334,6 +342,30 @@ $categories = $query->fetchAll(PDO::FETCH_OBJ);
             });
     }, false); 
 
+    searchInput.addEventListener('input' , function() {
+        console.log(searchInput.value);
+        fetch('filterPrice.php', {
+            method: 'POST', // or 'PUT'
+            headers : {
+                'Content-Type': 'application/x-www-form-urlencoded', 
+            },
+            body: `min=${leftPrice.value*10}&max=${rightPrice.value*10}&cat=${curCat}&s=${searchInput.value}`,
+            })
+            .then((response) => {
+                response.text().then(res=>{
+                    // console.log(res);
+                    document.getElementById("wrapProducts").innerHTML = res;
+                });
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+    },false);
+
 </script>
+
+<script>
+	
+	</script>
 
 <?php require 'footer.php'; ?>

@@ -1,6 +1,4 @@
-<?php require 'header.php';
-require './connection.php';
-?>
+<?php require 'header.php'; ?>
 
 
 
@@ -25,8 +23,7 @@ require './connection.php';
 													<h2 class="slider-heading-text">Ready to get comfy? </h2>
 													<div class="slider-caption-text">There’s no place like bed. Sleep easy with the softest natural bedding essentials.</div>
 													<div class="slider-buttons">
-														<a href="#" class="btn btn-lg btn-white-outline">Detail</a>
-														<a href="#" class="btn btn-lg btn-white-outline">Buy Now</a>
+														<a href="./shop.php" class="btn btn-lg btn-white-outline">Buy Now</a>
 													</div>
 												</div>
 											</div>
@@ -39,8 +36,7 @@ require './connection.php';
 													<h2 class="slider-heading-text">Here, you'll get a good night sleep, not just a mattress.</h2>
 													<div class="slider-caption-text">the right place to choose a mattress.</div>
 													<div class="slider-buttons">
-														<a href="#" class="btn btn-lg btn-white">SEE MORE</a>
-														<a href="#" class="btn btn-lg btn-white-outline">GET NOW</a>
+														<a href="./shop.php" class="btn btn-lg btn-white">SEE MORE PRODUCTS</a>
 													</div>
 												</div>
 											</div>
@@ -67,7 +63,7 @@ require './connection.php';
 													<div class="product-category-grid-item">
 														<div class="product-category-grid-item-wrap">
 															<div class="product-category-grid-featured-wrap">
-																<div class="product-category-grid-featured bg-1" style="background-image: url(../images/categories/<?php echo $category[
+																<div class="product-category-grid-featured bg-1" style="background-image: url(../imgs/<?php echo $category[
                     'image'
                 ]; ?>)"></div>
 															</div>
@@ -83,11 +79,11 @@ require './connection.php';
 
 											<?php $category = $sql->fetch(PDO::FETCH_ASSOC); ?>
 											<div class="wall-col col-md-6 col-sm-12 title-out product-category-wall">
-												<a href="#">
+												<a href="./shop.php?category=<?php echo $category['category_id']; ?>">
 													<div class="product-category-grid-item">
 														<div class="product-category-grid-item-wrap">
 															<div class="product-category-grid-featured-wrap">
-																<div class="product-category-grid-featured bg-2" style="background-image: url(../images/categories/<?php echo $category[
+																<div class="product-category-grid-featured bg-2" style="background-image: url(../imgs/<?php echo $category[
                     'image'
                 ]; ?>)"></div>
 															</div>
@@ -106,11 +102,11 @@ require './connection.php';
 											</div>
 											<?php $category = $sql->fetch(PDO::FETCH_ASSOC); ?>
 											<div class="wall-col col-md-6 col-sm-12 title-out product-category-wall">
-												<a href="#">
+												<a href="./shop.php?category=<?php echo $category['category_id']; ?>">
 													<div class="product-category-grid-item">
 														<div class="product-category-grid-item-wrap">
 															<div class="product-category-grid-featured-wrap">
-																<div class="product-category-grid-featured bg-3" style="background-image: url(../images/categories/<?php echo $category[
+																<div class="product-category-grid-featured bg-3" style="background-image: url(../imgs/<?php echo $category[
                     'image'
                 ]; ?>)"></div>
 															</div>
@@ -132,11 +128,11 @@ require './connection.php';
 
 										<?php $category = $sql->fetch(PDO::FETCH_ASSOC); ?>
 											<div class="wall-col col-sm-4 title-out height-auto product-category-wall">
-												<a href="#">
+												<a href="./shop.php?category=<?php echo $category['category_id']; ?>">
 													<div class="product-category-grid-item">
 														<div class="product-category-grid-item-wrap">
 															<div class="product-category-grid-featured-wrap">
-																<div class="product-category-grid-featured bg-4" style="background-image: url(../images/categories/<?php echo $category[
+																<div class="product-category-grid-featured bg-4" style="background-image: url(../imgs/<?php echo $category[
                     'image'
                 ]; ?>)"></div>
 															</div>
@@ -152,7 +148,7 @@ require './connection.php';
 
 	    									<?php $category = $sql->fetch(PDO::FETCH_ASSOC); ?>
 											<div class="wall-col col-sm-4 title-out height-auto product-category-wall">
-												<a href="#">
+												<a href="./shop.php?category=<?php echo $category['category_id']; ?>">
 													<div class="product-category-grid-item">
 														<div class="product-category-grid-item-wrap">
 															<div class="product-category-grid-featured-wrap">
@@ -173,11 +169,11 @@ require './connection.php';
 											</div>
 											<?php $category = $sql->fetch(PDO::FETCH_ASSOC); ?>
 											<div class="wall-col col-sm-4 title-out height-auto product-category-wall">
-												<a href="#">
+												<a href="./shop.php?category=<?php echo $category['category_id']; ?>">
 													<div class="product-category-grid-item">
 														<div class="product-category-grid-item-wrap">
 															<div class="product-category-grid-featured-wrap">
-																<div class="product-category-grid-featured bg-6" style="background-image: url(../imgs<?php echo $category[
+																<div class="product-category-grid-featured bg-6" style="background-image: url(../imgs/<?php echo $category[
                     'image'
                 ]; ?>)"></div>
 															</div>
@@ -217,7 +213,7 @@ require './connection.php';
 						</div>
 						</a>
 					</div>
-					<div class="lookbook-thumb">
+					<div class="lookbook-thumb" style="box-shadow: 6px 0px 8px 0px #00000029">
 						<div class="caroufredsel product-slider" data-height="variable" data-scroll-fx="scroll" data-scroll-item="1" data-visible-min="1" data-visible-max="3" data-responsive="1" data-infinite="1" data-autoplay="0" data-circular="1">
 							<div class="caroufredsel-wrap">
 								<div class="shop shop-lookbok columns-3">
@@ -238,17 +234,6 @@ require './connection.php';
                     'image1'
                 ]; ?>" alt="Product-2"/>
 															</div>
-															<div class="yith-wcwl-add-to-wishlist">
-																<div class="yith-wcwl-add-button">
-																	<a href="#" class="add_to_wishlist">
-																		Add to Wishlist
-																	</a>
-																</div>
-															</div>
-															<div class="clear"></div>
-															<div class="shop-loop-quickview">
-																<a href="#" data-rel="quickViewModal"><i class="fa fa-plus"></i></a>
-															</div>
 														</div>
 													</div>
 													<figcaption>
@@ -261,13 +246,15 @@ require './connection.php';
 															<div class="info-meta">
 																<div class="info-price">
 																	<span class="price">
-																		<span class="amount">&#36;<?php echo $prod[
+																		<span class="amount"><?php echo $prod[
                       'price'
-                  ]; ?></span>&ndash;<span class="amount">&#36;150</span>
+                  ]; ?></span> JOD<span class="amount"></span>
 																	</span>
 																</div>
 																<div class="loop-add-to-cart">
-																	<a href="#">Select options</a>
+																	<a href="add_to_cart.php?ad=<?php echo $prod[
+                     'product_id'
+                 ]; ?>&from=index">Add To Cart</a>
 																</div>
 															</div>
 														</div>
@@ -315,17 +302,7 @@ require './connection.php';
                     'image1'
                 ]; ?>" alt="Product-2"/>
 															</div>
-															<div class="yith-wcwl-add-to-wishlist">
-																<div class="yith-wcwl-add-button">
-																	<a href="#" class="add_to_wishlist">
-																		Add to Wishlist
-																	</a>
-																</div>
-															</div>
-															<div class="clear"></div>
-															<div class="shop-loop-quickview">
-																<a href="#" data-rel="quickViewModal"><i class="fa fa-plus"></i></a>
-															</div>
+															
 														</div>
 													</div>
 													<figcaption>
@@ -338,13 +315,15 @@ require './connection.php';
 															<div class="info-meta">
 																<div class="info-price">
 																	<span class="price">
-																		<span class="amount">&#36;<?php echo $prod[
+																		<span class="amount"><?php echo $prod[
                       'price'
-                  ]; ?></span>&ndash;<span class="amount">&#36;150</span>
+                  ]; ?></span> JOD<span class="amount"></span>
 																	</span>
 																</div>
 																<div class="loop-add-to-cart">
-																	<a href="#">Select options</a>
+																<a href="add_to_cart.php?ad=<?php echo $prod[
+                    'product_id'
+                ]; ?>&from=index">Add To Cart</a>
 																</div>
 															</div>
 														</div>
@@ -377,7 +356,7 @@ require './connection.php';
 						 </div>
 						 </a>
 					</div>
-					<div class="lookbook-thumb">
+					<div class="lookbook-thumb" style="box-shadow: 6px 0px 8px 0px #00000029">
 						<div class="caroufredsel product-slider" data-height="variable" data-scroll-fx="scroll" data-scroll-item="1" data-visible-min="1" data-visible-max="3" data-responsive="1" data-infinite="1" data-autoplay="0" data-circular="1">
 							<div class="caroufredsel-wrap">
 								<div class="shop shop-lookbok columns-3">
@@ -398,17 +377,7 @@ require './connection.php';
                     'image1'
                 ]; ?>" alt="Product-2"/>
 															</div>
-															<div class="yith-wcwl-add-to-wishlist">
-																<div class="yith-wcwl-add-button">
-																	<a href="#" class="add_to_wishlist">
-																		Add to Wishlist
-																	</a>
-																</div>
-															</div>
-															<div class="clear"></div>
-															<div class="shop-loop-quickview">
-																<a href="#" data-rel="quickViewModal"><i class="fa fa-plus"></i></a>
-															</div>
+															
 														</div>
 													</div>
 													<figcaption>
@@ -421,13 +390,18 @@ require './connection.php';
 															<div class="info-meta">
 																<div class="info-price">
 																	<span class="price">
-																		<span class="amount">&#36;<?php echo $prod[
-                      'price'
-                  ]; ?></span>&ndash;<span class="amount">&#36;150</span>
+																		<span class="amount"><del><?php echo $prod['price'] +
+                      $prod['price'] *
+                          ($prod['discount'] /
+                              100); ?> JOD</del><?php echo $prod[
+     'price'
+ ]; ?></span> JOD<span class="amount"></span>
 																	</span>
 																</div>
 																<div class="loop-add-to-cart">
-																	<a href="#">Select options</a>
+																<a href="add_to_cart.php?ad=<?php echo $prod[
+                    'product_id'
+                ]; ?>&from=index">Add To Cart</a>
 																</div>
 															</div>
 														</div>
@@ -446,90 +420,16 @@ require './connection.php';
 					</div>
 				</div>
 			</div>
-
-		<div class="footer-services">
-			<div class="container">
-				<div class="row">
-					<div class="col-sm-4 footer-service-item">
-						<a class="footer-service-item-i" href="#">
-							<i class="footer-service-icon fa fa-send-o"></i>
-							<h3 class="footer-service-title">Shipping & Returns</h3>
-							<span class="footer-service-text">
-								World wide shipping to selected countries
-							</span>
-						</a>
-					</div>
-					<div class="col-sm-4 footer-service-item">
-						<a class="footer-service-item-i" href="#">
-							<i class="footer-service-icon fa fa-life-bouy"></i>
-							<h3 class="footer-service-title">FAQ</h3>
-							<span class="footer-service-text">
-								Answers to frequently asked questions
-							</span>
-						</a>
-					</div>
-					<div class="col-sm-4 footer-service-item">
-						<a class="footer-service-item-i" href="#">
-							<i class="footer-service-icon fa fa-home"></i>
-							<h3 class="footer-service-title">Stores</h3>
-							<span class="footer-service-text">Find our retail locations</span>
-						</a>
-					</div>
-				</div>
-			</div>
-		</div>
 	</div>
 </div>
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<script>
+	window.onload = function () {
+		document.getElementById("home").style.cssText = "border-bottom: 2px solid white;"
+	}
+</script>
 
 
 

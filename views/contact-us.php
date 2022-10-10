@@ -1,13 +1,13 @@
 
 
-<?php require_once "header.php";?>
+<?php require_once 'header.php'; ?>
 
 
 
 
 
 <div class="heading-container heading-resize heading-no-button">
-				<div class="heading-background heading-parallax bg-1">
+				<div class="heading-background heading-parallax bg-1" style = "background-image: url(../imgs/h2.jpg)">
 					<div class="container">
 						<div class="row">
 							<div class="col-md-12">
@@ -68,7 +68,13 @@
 												</div>
 											</div>
 										</div>
-										<div class="col-sm-4">
+										<style>
+											.support-icon {
+												padding:10px !important;
+												font-size:14px !important;
+											}
+										</style>
+										<div class="col-sm-4" style="background-color:whitesmoke">
 											<div class="row contact-info">
 												<div class="col-sm-12">
 													<div class="title">
@@ -89,12 +95,12 @@
 														</div>
 														<div class="support-icon">
 															<i class="fa fa-phone"></i>
-															(+962) 770000000
+															(+962) 778083546
 														</div>
 														<div class="support-icon">
 															<i class="fa fa-envelope-o"></i>
 															<a href="mailto:email@domain.com">
-																email@domain.com
+																info@cloudmaster.com
 															</a>
 														</div>
 													</div>
@@ -109,5 +115,9 @@
 				</div>
 			</div>
 
-
-<?php require_once "footer.php";?>
+	<script>
+	window.onload = function () {
+		document.getElementById("contact").style.cssText = "border-bottom: 2px solid white;"
+	}
+	</script>
+<?php require_once 'footer.php'; ?>

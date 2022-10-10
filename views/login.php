@@ -1,36 +1,57 @@
 <?php
-require_once "connection.php";
-session_start();
+require_once 'connection.php';
 
 if (isset($_POST['login'])) {
-	$password = $_POST['password'];
-	$email = $_POST['email'];
-	
-    $query = "SELECT * from `users` where email=?";
+    $password = $_POST['password'];
+    $email = $_POST['email'];
+
+    $query = 'SELECT * from `users` where email=?';
     $query = $connect->prepare($query);
     $query->execute([$email]);
 
-
-
     $user = $query->fetch(PDO::FETCH_OBJ);
-	print_r($user);
-	// header("Location: welcome.php");
+    // print_r($user);
+    // print_r($_SESSION);
 
-	if (!empty($user)) {
-		if($password==$user->password)
-		{echo "<script>swal({ icon: 'success',});</script>";
-	$_SESSION['userid']=2;}//$user->user_id;}
-		else{	echo "<script>alert('incorrect password ');</script>";}
-		// header("Location: index.php");
-	} else echo "<script>alert('It looks like you’re used incorrect email try login. Please ');</script>";
-
+    if (!empty($user)) {
+        if ($password == $user->password) {
+            $_SESSION['userid'] = $user->user_id;
+            if (isset($_GET['from'])) {
+                $cartInVisitor = $_SESSION['cartVisitor'];
+                foreach ($cartInVisitor as $cart) {
+                    $sql = $connect->query("INSERT INTO cart (user_id, product_id , quantity)
+					VALUES ('$user->user_id','$cart[0]','$cart[1]')");
+                }
+                unset($_SESSION['cartVisitor']);
+                $total = $_POST['totalPrice'];
+                if (isset($_POST['coupon'])) {
+                    $coupon = $_POST['coupon'];
+                    header("location: ./checkout.php?price=$total&c=$coupon");
+                }
+                header("location: ./checkout.php?price=$total&c=0");
+            } else {
+                echo "<script>swal({ icon: 'success',});</script>";
+                if ($user->is_admin) {
+                    header('location: ../admin/views/index.php');
+                } else {
+                    header('location: index.php');
+                }
+            }
+        }
+        //$user->user_id;}
+        else {
+            echo "<script>location.href = 'index.php?err=login'</script>";
+            echo "<script>alert('incorrect password ');</script>";
+        }
+        // header("Location: index.php");
+    } else {
+        echo "<script>location.href = 'index.php?err=login'</script>";
+        echo "<script>alert('It looks like you’re used incorrect email try login. Please ');</script>";
+    }
 }
-
-$_SESSION['userid']=2;
-
 ?>
 
-<?php require 'header.php'; ?>
+<?php  ?>
 
 <div style="height: 100px ;"></div>
 
@@ -74,7 +95,7 @@ $_SESSION['userid']=2;
 	</div>
 </div> 
 
-<?php  require 'footer.php'; ?>
+<?php require 'footer.php'; ?>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 
